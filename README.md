@@ -55,3 +55,8 @@ Obviously you would want to load a more useful model that had been generated els
 * Support for traditional Storm functionality, not only Trident
 * More examples
 * Add crates to storm deploy for the R installations
+
+## Similar Projects
+
+[R-Storm](https://github.com/allenday/R-Storm)
+
