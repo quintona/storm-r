@@ -78,7 +78,7 @@ public class RFunction extends BaseFunction {
 		rInput.flush();
 	}
 	
-	private static String trimOutput(String output){
+	public static String trimOutput(String output){
 		output = output.replace("[1]", "");
 		output = output.replace("\\", "");
 		output = output.trim();
@@ -111,6 +111,10 @@ public class RFunction extends BaseFunction {
 		}
 		if(awaitingStart)return null;
 		String trimmedContent = trimOutput(stringBuilder.toString());
+		if(trimmedContent == null)
+			return null;
+		if("[]".equals(trimmedContent))
+			return null;
         return (JSONArray)JSONValue.parseWithException(trimmedContent);
 	}
 	
@@ -165,7 +169,9 @@ public class RFunction extends BaseFunction {
 	@Override
 	public void execute(TridentTuple tuple, TridentCollector collector) {
 		JSONArray functionInput = coerceTuple(tuple);
-		collector.emit(coerceResponce(performFunction(functionInput)));
+		JSONArray result = performFunction(functionInput);
+		if(result != null)
+			collector.emit(coerceResponce(result));
 	}
 
 	

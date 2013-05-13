@@ -59,4 +59,3 @@ Obviously you would want to load a more useful model that had been generated els
 ## Similar Projects
 
 [R-Storm](https://github.com/allenday/R-Storm)
-
